@@ -5,6 +5,7 @@ import { gc } from '@cmtlyt/base';
 import { usePathname } from 'next/navigation';
 
 import { TabItem } from '../constant';
+import styles from '../index.module.scss';
 
 interface IProps {
   links: TabItem[];
@@ -21,7 +22,11 @@ export function LinkList(props: IProps) {
       key={link.path}
       href={link.path}
       target={link.target}
-      className={gc([linkClass, 'transition-colors', { 'text-[#1e80ff]': link.path === pathname }])}
+      className={gc([
+        linkClass,
+        'transition-colors',
+        { [styles.activeLink]: link.path === pathname },
+      ])}
     >
       <span className={spanClass}>{link.title}</span>
     </Link>

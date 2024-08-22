@@ -10,6 +10,23 @@
   box-shadow: 0 0 1rem -0.8rem;
 }
 
+.activeLink {
+  color: #1e80ff;
+}
+
+.createrArrow {
+  box-shadow: -0.05rem 0 0 #ccc;
+}
+
+.searchWrapper {
+  width: 53rem;
+  grid-template-columns: 1fr 15.1rem 11rem;
+}
+
+.searchWrapper:focus-within {
+  grid-template-columns: 1fr 0 11rem;
+}
+
 // 1220px main left-aside hidden
 // 1000px main right-aside hidden
 // 600px main not padding and width is 100vw
@@ -21,8 +38,13 @@
 }
 
 @media screen and (max-width: 800px) {
-  .createrButton {
-    display: none;
+  .searchWrapper {
+    grid-template-columns: 1fr 0 11rem;
+    width: 35rem;
+  }
+
+  .searchWrapper:focus-within {
+    grid-template-columns: 1fr 0 0;
   }
 }
 

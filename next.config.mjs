@@ -15,6 +15,13 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src')],
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'p9-passport.byteacctimg.com',
+      },
+    ],
+  },
   reactStrictMode: false,
   experimental: {
     optimizePackageImports: [],

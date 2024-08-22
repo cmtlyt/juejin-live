@@ -6,6 +6,10 @@ import styles from './index.module.scss';
 import { otherTabList } from './constant';
 import { Tabbar } from './components/Tabbar';
 import { BaseTabbar } from './components/Tabbar/BaseTabbar';
+import { SearchInput } from './components/SearchInput';
+import { CreaterButton } from './components/CreaterButton';
+import { NotificationIcon } from './components/NotificationIcon';
+import { Avatar } from './Avatar';
 
 function Icon() {
   return (
@@ -30,16 +34,46 @@ function Icon() {
 
 export function Navbar() {
   return (
-    <nav className={styles.navbarWrapper}>
-      <div className="flex items-center">
-        <Icon />
-        <Tabbar />
-        <BaseTabbar
-          className={styles.otherTab}
-          tabList={otherTabList}
-          activeClass="group-hover:text-black"
-        />
-      </div>
+    <nav className={gc([styles.navbarWrapper])}>
+      <section className="flex items-center justify-between h-[6rem] w-full mx-[2.4rem]">
+        <div className="flex items-center h-full">
+          <Icon />
+          <Tabbar />
+          <BaseTabbar
+            className={styles.otherTab}
+            tabList={otherTabList}
+            activeClass="group-hover:text-black"
+          />
+        </div>
+        <div
+          className={gc([
+            styles.searchWrapper,
+            'grid',
+            'h-max',
+            'transition-[grid-template-columns] duration-300',
+          ])}
+        >
+          <SearchInput />
+          <section
+            className={gc([
+              styles.createrButton,
+              'flex items-center',
+              'h-full',
+              'ml-[2.4rem] mr-[1.2rem]',
+            ])}
+          >
+            <CreaterButton />
+          </section>
+          <section className="flex items-center">
+            <section className="ml-[1.2rem] mr-[2.4rem] w-[1.8rem] h-[2.4rem]">
+              <NotificationIcon />
+            </section>
+            <section className="size-[4rem]">
+              <Avatar />
+            </section>
+          </section>
+        </div>
+      </section>
     </nav>
   );
 }

@@ -3,4 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
+  .shadow-border {
+    box-sizing: border-box;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 0 1rem -0.9rem;
+  }
 }

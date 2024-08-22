@@ -1,3 +1,37 @@
 .navbarWrapper {
   display: flex;
 }
+
+.logo {
+  display: none;
+}
+
+.shrinkTabbar {
+  box-shadow: 0 0 1rem -0.8rem;
+}
+
+// 1220px main left-aside hidden
+// 1000px main right-aside hidden
+// 600px main not padding and width is 100vw
+
+@media screen and (max-width: 1350px) {
+  .otherTab {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .createrButton {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .logo {
+    display: block;
+  }
+
+  .bigLogo {
+    display: none;
+  }
+}

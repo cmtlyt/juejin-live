@@ -1,5 +1,6 @@
 'use client';
 
+import { MouseEventHandler } from 'react';
 import Link from 'next/link';
 import { gc } from '@cmtlyt/base';
 import { usePathname } from 'next/navigation';
@@ -11,10 +12,11 @@ interface IProps {
   links: TabItem[];
   linkClass?: string;
   spanClass?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export function LinkList(props: IProps) {
-  const { links, linkClass, spanClass } = props;
+  const { links, linkClass, spanClass, onClick } = props;
   const pathname = usePathname();
 
   return links.map((link) => (
@@ -27,6 +29,7 @@ export function LinkList(props: IProps) {
         'transition-colors',
         { [styles.activeLink]: link.path === pathname },
       ])}
+      onClick={onClick}
     >
       <span className={spanClass}>{link.title}</span>
     </Link>

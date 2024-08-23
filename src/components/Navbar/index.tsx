@@ -13,7 +13,7 @@ import { Avatar } from './Avatar';
 
 function Icon() {
   return (
-    <Link href="/">
+    <Link href="/" className="flex items-center h-full flex-shrink-0">
       <Image
         className={gc([styles.bigLogo, 'mr-[1.2rem]'])}
         src="https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"
@@ -35,7 +35,13 @@ function Icon() {
 export function Navbar() {
   return (
     <nav className={gc([styles.navbarWrapper])}>
-      <section className="flex items-center justify-between h-[6rem] w-full mx-[2.4rem]">
+      <section
+        className={gc([
+          styles.tabbarWrapper,
+          'flex items-center justify-between',
+          'h-[6rem] w-full mx-[2.4rem]',
+        ])}
+      >
         <div className="flex items-center h-full">
           <Icon />
           <Tabbar />
@@ -64,7 +70,7 @@ export function Navbar() {
           >
             <CreaterButton />
           </section>
-          <section className="flex items-center">
+          <section className="flex items-center overflow-hidden">
             <section className="ml-[1.2rem] mr-[2.4rem] w-[1.8rem] h-[2.4rem]">
               <NotificationIcon />
             </section>

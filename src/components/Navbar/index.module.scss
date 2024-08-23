@@ -1,5 +1,6 @@
 .navbarWrapper {
   display: flex;
+  box-shadow: 0 -1rem 1.3rem 0;
 }
 
 .logo {
@@ -55,5 +56,14 @@
 
   .bigLogo {
     display: none;
+  }
+
+  .searchWrapper {
+    width: 26rem;
+  }
+
+  .tabbarWrapper {
+    margin-left: 1.6rem;
+    margin-right: 0;
   }
 }

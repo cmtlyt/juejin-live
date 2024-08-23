@@ -2,6 +2,7 @@ export interface TabItem {
   title: string;
   path: string;
   target?: '_blank' | '_self' | '_parent' | '_top';
+  subTabs?: TabItem[];
 }
 
 export const tabList: TabItem[] = [

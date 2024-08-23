@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { gc } from '@cmtlyt/base';
 
 import '../tailwind.css';
 import '../globals.css';
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={gc([inter.className, 'flex flex-col', 'h-[100vh]', 'bg-slate-50'])}>
         <StyledComponentsRegistry>
           <Navbar />
           {children}

@@ -34,7 +34,7 @@ function Icon() {
 
 export function Navbar() {
   return (
-    <nav className={gc([styles.navbarWrapper])}>
+    <nav className={gc([styles.navbarWrapper, 'sticky top-0 z-20', 'bg-white'])}>
       <section
         className={gc([
           styles.tabbarWrapper,

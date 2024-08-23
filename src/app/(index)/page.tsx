@@ -1,3 +1,10 @@
+import { Tabbar } from './components/Tabbar';
+
 export default function Home() {
-  return <main>main</main>;
+  return (
+    <section className="flex-1 overflow-y-auto">
+      <Tabbar />
+      <main className="h-[300vh]">main</main>
+    </section>
+  );
 }

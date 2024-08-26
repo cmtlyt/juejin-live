@@ -41,8 +41,6 @@ export async function getArticleList(params: QueryParams) {
   return fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${pageSize}`)
     .then<IArticle[]>((res) => res.json())
     .then((res) => {
-      res.unshift(params as any);
-
       return res;
     });
 }

@@ -6,6 +6,7 @@ import { IArticle, getArticleList } from './service';
 import { Article } from '../Article';
 
 import { usePagination } from '@/hooks/usePagination';
+import BottomingOut from '@/components/BottomingOut';
 
 interface IProps {
   tabId: string;
@@ -15,21 +16,22 @@ interface IProps {
 export function ArticleList(props: IProps) {
   const { tabId, sort } = props;
 
+  const doneRef = useRef(false);
   const [articles, setArticles] = useState<IArticle[]>([]);
-  const pageInfo = useRef({ loading: false, page: 1, pageSize: 10 });
   const [fetchNextPage, updatePageInfo] = usePagination(getArticleList);
 
   const loadArticleList = async (cover?: boolean) => {
+    if (doneRef.current) return;
+
     if (cover) {
       updatePageInfo({ page: 1 });
     }
 
-    const articles = await fetchNextPage({
-      group: tabId,
-      sort,
-      page: pageInfo.current.page,
-      pageSize: pageInfo.current.pageSize,
-    });
+    const articles = await fetchNextPage({ group: tabId, sort });
+
+    if (!articles.length) {
+      doneRef.current = true;
+    }
 
     if (cover) {
       setArticles(articles);
@@ -53,6 +55,7 @@ export function ArticleList(props: IProps) {
       {articles.map((article) => (
         <Article key={article.id} articleInfo={article} />
       ))}
+      {!!articles.length && <BottomingOut distance={100} onTrigger={loadArticleList} />}
     </section>
   );
 }

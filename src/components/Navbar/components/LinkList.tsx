@@ -35,6 +35,24 @@ interface ISubLinkListProps extends ISubLinkInfo {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
+function checkIsActive(path: string, matchs: string | (string | RegExp)[]): boolean {
+  if (!matchs) return false;
+
+  if (typeof matchs === 'string') {
+    return path === matchs;
+  }
+
+  if (!Array.isArray(matchs)) return false;
+
+  return matchs.some((match) => {
+    if (typeof match === 'string') {
+      return path === match;
+    }
+
+    return match.test(path);
+  });
+}
+
 function SubLinkList(props: ISubLinkListProps) {
   const { links, listClass, linkClass, spanClass, activeClass, onClick } = props;
   const pathname = usePathname();
@@ -63,7 +81,15 @@ function SubLinkList(props: ISubLinkListProps) {
               'text-[1.4rem] text-[#999] hover:text-[#1e80ff]',
               'bg-[#eee] rounded-full',
             ],
-            ['transition-colors', { [activeClass || styles.activeLink]: link.path === pathname }],
+            [
+              'transition-colors',
+              {
+                [activeClass || styles.activeLink]: checkIsActive(
+                  pathname,
+                  link.activeMatch || link.path,
+                ),
+              },
+            ],
           )}
           onClick={onClick}
         >
@@ -96,7 +122,12 @@ export function LinkList(props: IProps) {
       className={gc([
         linkClass,
         'group relative',
-        { [activeClass || styles.activeLink]: link.path === pathname },
+        {
+          [activeClass || styles.activeLink]: checkIsActive(
+            pathname,
+            link.activeMatch || link.path,
+          ),
+        },
       ])}
     >
       <Link

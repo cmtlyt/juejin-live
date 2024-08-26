@@ -9,6 +9,7 @@ export interface TabItem {
   target?: '_blank' | '_self' | '_parent' | '_top';
   subTabs?: TabItem[];
   Icon?: React.FC<IconProps>;
+  activeMatch?: string | (string | RegExp)[];
 }
 
 export const tabList: TabItem[] = [

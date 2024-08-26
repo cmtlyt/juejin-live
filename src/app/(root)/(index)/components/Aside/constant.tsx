@@ -25,6 +25,7 @@ export const asideList: TabItem[] = [
   {
     title: '综合',
     path: '/',
+    activeMatch: ['/', '/recommended'],
     Icon(props) {
       return <RiCompass3Fill {...props} />;
     },

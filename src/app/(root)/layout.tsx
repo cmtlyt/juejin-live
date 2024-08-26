@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={gc([inter.className, 'flex flex-col', 'h-[100vh]', 'bg-slate-50'])}>
         <StyledComponentsRegistry>
           <Navbar />
-          {children}
+          <section className="flex-1 flex flex-col overflow-y-auto">{children}</section>
         </StyledComponentsRegistry>
       </body>
     </html>

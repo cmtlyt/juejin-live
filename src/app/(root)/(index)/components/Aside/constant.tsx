@@ -1,12 +1,48 @@
+'use client';
+
+import { PiListStarFill } from 'react-icons/pi';
+import { RiCompass3Fill } from 'react-icons/ri';
+import { BsBookmarkStarFill } from 'react-icons/bs';
+import { BsDatabaseFill } from 'react-icons/bs';
+import { BiCodeBlock } from 'react-icons/bi';
+import { AiFillAndroid } from 'react-icons/ai';
+import { FaApple } from 'react-icons/fa';
+import { FaRobot } from 'react-icons/fa';
+import { BsTools } from 'react-icons/bs';
+import { FaKeyboard } from 'react-icons/fa';
+import { MdLibraryBooks } from 'react-icons/md';
+
 import { TabItem } from '@/components/Navbar/constant';
 
-export const tabList: TabItem[] = [
-  { title: '关注', path: '' },
-  { title: '综合', path: '' },
-  { title: '排行榜', path: '' },
+export const asideList: TabItem[] = [
+  {
+    title: '关注',
+    path: '/following',
+    Icon(props) {
+      return <PiListStarFill {...props} />;
+    },
+  },
+  {
+    title: '综合',
+    path: '/',
+    Icon(props) {
+      return <RiCompass3Fill {...props} />;
+    },
+  },
+  {
+    title: '排行榜',
+    path: '',
+    id: 'rank',
+    Icon(props) {
+      return <BsBookmarkStarFill {...props} />;
+    },
+  },
   {
     title: '后端',
     path: '',
+    Icon(props) {
+      return <BsDatabaseFill {...props} />;
+    },
     subTabs: [
       { title: '后端', path: '' },
       { title: 'Java', path: '' },
@@ -28,6 +64,9 @@ export const tabList: TabItem[] = [
   {
     title: '前端',
     path: '',
+    Icon(props) {
+      return <BiCodeBlock {...props} />;
+    },
     subTabs: [
       { title: '前端', path: '' },
       { title: 'JavaScript', path: '' },
@@ -49,6 +88,9 @@ export const tabList: TabItem[] = [
   {
     title: 'Android',
     path: '',
+    Icon(props) {
+      return <AiFillAndroid {...props} />;
+    },
     subTabs: [
       { title: 'Android', path: '' },
       { title: '前端', path: '' },
@@ -70,6 +112,9 @@ export const tabList: TabItem[] = [
   {
     title: 'iOS',
     path: '',
+    Icon(props) {
+      return <FaApple {...props} />;
+    },
     subTabs: [
       { title: 'iOS', path: '' },
       { title: 'Swift', path: '' },
@@ -91,6 +136,9 @@ export const tabList: TabItem[] = [
   {
     title: '人工智能',
     path: '',
+    Icon(props) {
+      return <FaRobot {...props} />;
+    },
     subTabs: [
       { title: '人工智能', path: '' },
       { title: 'LLM', path: '' },
@@ -112,6 +160,9 @@ export const tabList: TabItem[] = [
   {
     title: '开发工具',
     path: '',
+    Icon(props) {
+      return <BsTools {...props} />;
+    },
     subTabs: [
       { title: '前端', path: '' },
       { title: 'GitHub', path: '' },
@@ -133,6 +184,9 @@ export const tabList: TabItem[] = [
   {
     title: '代码人生',
     path: '',
+    Icon(props) {
+      return <FaKeyboard {...props} />;
+    },
     subTabs: [
       { title: '后端', path: '' },
       { title: '前端', path: '' },
@@ -154,6 +208,9 @@ export const tabList: TabItem[] = [
   {
     title: '阅读',
     path: '',
+    Icon(props) {
+      return <MdLibraryBooks {...props} />;
+    },
     subTabs: [
       { title: '程序员', path: '' },
       { title: '前端', path: '' },

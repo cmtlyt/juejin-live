@@ -16,11 +16,17 @@ interface ISubLinkInfo {
 }
 interface IProps {
   links: TabItem[];
+
   linkClass?: string;
   spanClass?: string;
-  showSubTabs?: boolean;
   activeClass?: string;
+  iconClass?: string;
+
+  showSubTabs?: boolean;
   subTabInfo?: ISubLinkInfo;
+
+  showIcon?: boolean;
+
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
@@ -69,23 +75,38 @@ function SubLinkList(props: ISubLinkListProps) {
 }
 
 export function LinkList(props: IProps) {
-  const { links, linkClass, spanClass, showSubTabs, activeClass, subTabInfo, onClick } = props;
+  const {
+    links,
+
+    linkClass,
+    spanClass,
+    activeClass,
+    iconClass,
+
+    showSubTabs,
+    subTabInfo,
+
+    showIcon,
+    onClick,
+  } = props;
   const pathname = usePathname();
 
   return links.map((link) => (
-    <section className={gc([linkClass, 'group relative'])}>
+    <section
+      className={gc([
+        linkClass,
+        'group relative',
+        { [activeClass || styles.activeLink]: link.path === pathname },
+      ])}
+    >
       <Link
         key={link.path}
         href={link.path}
         target={link.target}
-        className={gc([
-          'flex items-center justify-center',
-          'size-full',
-          'transition-colors',
-          { [activeClass || styles.activeLink]: link.path === pathname },
-        ])}
+        className={gc(['flex items-center justify-center', 'size-full', 'transition-colors'])}
         onClick={onClick}
       >
+        {link.Icon && showIcon && <link.Icon className={iconClass} />}
         <span className={spanClass}>{link.title}</span>
       </Link>
       {link.subTabs && showSubTabs && (

@@ -1,8 +1,14 @@
+interface IconProps {
+  className?: string;
+}
+
 export interface TabItem {
+  id?: string;
   title: string;
   path: string;
   target?: '_blank' | '_self' | '_parent' | '_top';
   subTabs?: TabItem[];
+  Icon?: React.FC<IconProps>;
 }
 
 export const tabList: TabItem[] = [

@@ -231,3 +231,9 @@ export const asideList: TabItem[] = [
     ],
   },
 ];
+
+export const asideMatchList = asideList
+  .map((item) => {
+    return item.activeMatch || item.path;
+  })
+  .flat();

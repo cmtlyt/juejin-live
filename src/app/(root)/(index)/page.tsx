@@ -1,8 +1,8 @@
 import 'server-only';
 
-import Link from 'next/link';
-
 import { ArticleList } from './components/ArticleList';
+
+import { LinkList } from '@/components/Navbar/components/LinkList';
 
 interface PageProps {
   params: {
@@ -21,8 +21,17 @@ export default async function IndexPage({ params, searchParams }: PageProps) {
     <main>
       <section>
         <section>
-          <Link href="?sort=recommend">推荐</Link>
-          <Link href="?sort=newest">最新</Link>
+          <LinkList
+            links={[
+              {
+                path: '?sort=recommend',
+                title: '推荐',
+                matchQuery: true,
+                activeMatch: ['', 'sort=recommend'],
+              },
+              { path: '?sort=newest', title: '最新', matchQuery: true, activeMatch: 'sort=newest' },
+            ]}
+          />
         </section>
         <ArticleList tabId={tabId} sort={sort} />
       </section>

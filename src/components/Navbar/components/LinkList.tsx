@@ -3,7 +3,7 @@
 import { MouseEventHandler } from 'react';
 import Link from 'next/link';
 import { gc } from '@cmtlyt/base';
-import { usePathname } from 'next/navigation';
+import { ReadonlyURLSearchParams, usePathname, useSearchParams } from 'next/navigation';
 
 import { TabItem } from '../constant';
 import styles from '../index.module.scss';
@@ -32,30 +32,61 @@ interface IProps {
 
 interface ISubLinkListProps extends ISubLinkInfo {
   links: TabItem[];
+  pathname: string;
+  searchParams: ReadonlyURLSearchParams;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-function checkIsActive(path: string, matchs: string | (string | RegExp)[]): boolean {
-  if (!matchs) return false;
+function matchFunc(linkPath: string | string[], curPath: string, matchQuery?: boolean) {
+  if (typeof linkPath === 'string') {
+    const queryStart = curPath.indexOf('?');
+    linkPath = queryStart > 0 ? linkPath.slice(queryStart) : linkPath;
 
-  if (typeof matchs === 'string') {
-    return path === matchs;
-  }
-
-  if (!Array.isArray(matchs)) return false;
-
-  return matchs.some((match) => {
-    if (typeof match === 'string') {
-      return path === match;
+    if (matchQuery) {
+      return curPath.includes(linkPath);
     }
 
-    return match.test(path);
+    return curPath === linkPath;
+  }
+
+  if (!Array.isArray(linkPath)) return false;
+
+  const _linkPath = linkPath.map((item) => {
+    const regIdx = item.indexOf('reg:');
+
+    if (~regIdx) {
+      return new RegExp(item.slice(regIdx + 4));
+    }
+
+    return item;
+  });
+
+  return _linkPath.some((match) => {
+    if (typeof match === 'string') {
+      if (matchQuery && match) {
+        return curPath.includes(match);
+      }
+
+      return curPath === match;
+    }
+
+    return match.test(curPath);
   });
 }
 
+function checkIsActive(
+  linkInfo: TabItem,
+  pathname: string,
+  searchParams: ReadonlyURLSearchParams,
+): boolean {
+  const { path, matchQuery, activeMatch: matchs = path } = linkInfo;
+
+  return matchFunc(matchs, matchQuery && matchs ? searchParams.toString() : pathname, matchQuery);
+}
+
 function SubLinkList(props: ISubLinkListProps) {
-  const { links, listClass, linkClass, spanClass, activeClass, onClick } = props;
-  const pathname = usePathname();
+  const { links, listClass, linkClass, spanClass, activeClass, pathname, searchParams, onClick } =
+    props;
 
   return (
     <section
@@ -84,10 +115,7 @@ function SubLinkList(props: ISubLinkListProps) {
             [
               'transition-colors',
               {
-                [activeClass || styles.activeLink]: checkIsActive(
-                  pathname,
-                  link.activeMatch || link.path,
-                ),
+                [activeClass || styles.activeLink]: checkIsActive(link, pathname, searchParams),
               },
             ],
           )}
@@ -115,7 +143,9 @@ export function LinkList(props: IProps) {
     showIcon,
     onClick,
   } = props;
+
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return links.map((link) => (
     <section
@@ -123,10 +153,7 @@ export function LinkList(props: IProps) {
         linkClass,
         'group relative',
         {
-          [activeClass || styles.activeLink]: checkIsActive(
-            pathname,
-            link.activeMatch || link.path,
-          ),
+          [activeClass || styles.activeLink]: checkIsActive(link, pathname, searchParams),
         },
       ])}
     >
@@ -144,6 +171,8 @@ export function LinkList(props: IProps) {
         <SubLinkList
           links={link.subTabs}
           {...subTabInfo}
+          pathname={pathname}
+          searchParams={searchParams}
           onClick={(e) => {
             if (onClick) {
               e.stopPropagation();

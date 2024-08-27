@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, Suspense } from 'react';
 import Link from 'next/link';
 import { gc } from '@cmtlyt/base';
 import { ReadonlyURLSearchParams, usePathname, useSearchParams } from 'next/navigation';
@@ -139,7 +139,7 @@ function SubLinkList(props: ISubLinkListProps) {
   );
 }
 
-export function LinkList(props: IProps) {
+function LinkListBase(props: IProps) {
   const {
     links,
 
@@ -194,4 +194,12 @@ export function LinkList(props: IProps) {
       )}
     </section>
   ));
+}
+
+export function LinkList(props: IProps) {
+  return (
+    <Suspense>
+      <LinkListBase {...props} />
+    </Suspense>
+  );
 }

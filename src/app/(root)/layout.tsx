@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={gc([inter.className, 'flex flex-col', 'h-[100vh]', 'bg-slate-50'])}>
+      <body className={gc([inter.className, 'flex flex-col', 'min-h-[100vh]', 'bg-slate-50'])}>
         <StyledComponentsRegistry>
           <Navbar />
           <section className="flex-1 flex flex-col">{children}</section>

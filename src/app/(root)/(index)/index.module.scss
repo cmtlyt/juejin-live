@@ -12,3 +12,10 @@
     width: 100%;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .contentWrapper {
+    margin: 0;
+    padding: 0;
+  }
+}

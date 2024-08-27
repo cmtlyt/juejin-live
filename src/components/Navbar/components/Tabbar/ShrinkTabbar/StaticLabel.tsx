@@ -7,7 +7,7 @@ export function StaticLabel() {
   return (
     <label className="h-full">
       <input className={gc(['fixed size-0 top-[-1px] left-[-1px]'])} />
-      <section className={gc(['flex items-center', 'h-full'])}>
+      <section className={gc(['ml-[1rem]', 'flex items-center', 'h-full'])}>
         <span className="flex-shrink-0 text-[#1e80ff]">首页</span>
         <BiSolidDownArrow
           className={gc([

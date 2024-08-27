@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { gc } from '@cmtlyt/base';
 
 import styles from './index.module.scss';

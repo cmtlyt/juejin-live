@@ -12,6 +12,7 @@ interface ISubLinkInfo {
   linkClass?: string;
   spanClass?: string;
   listClass?: string;
+  coverListClass?: string;
   activeClass?: string;
 }
 interface IProps {
@@ -85,13 +86,23 @@ function checkIsActive(
 }
 
 function SubLinkList(props: ISubLinkListProps) {
-  const { links, listClass, linkClass, spanClass, activeClass, pathname, searchParams, onClick } =
-    props;
+  const {
+    links,
+    listClass,
+    coverListClass,
+    linkClass,
+    spanClass,
+    activeClass,
+    pathname,
+    searchParams,
+    onClick,
+  } = props;
 
   return (
     <section
       className={gc(
-        listClass || [
+        coverListClass || [
+          listClass,
           'hidden group-hover:flex',
           'absolute top-full left-0',
           'p-[1.5rem]',

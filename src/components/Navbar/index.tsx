@@ -9,7 +9,8 @@ import { BaseTabbar } from './components/Tabbar/BaseTabbar';
 import { SearchInput } from './components/SearchInput';
 import { CreaterButton } from './components/CreaterButton';
 import { NotificationIcon } from './components/NotificationIcon';
-import { Avatar } from './Avatar';
+import { Avatar } from './components/Avatar';
+import { ScrollHidden } from './ScreenHidden';
 
 function Icon() {
   return (
@@ -34,7 +35,7 @@ function Icon() {
 
 export function Navbar() {
   return (
-    <nav className={gc([styles.navbarWrapper, 'sticky top-0 z-20', 'bg-white'])}>
+    <ScrollHidden>
       <section
         className={gc([
           styles.tabbarWrapper,
@@ -80,7 +81,7 @@ export function Navbar() {
           </section>
         </div>
       </section>
-    </nav>
+    </ScrollHidden>
   );
 }
 

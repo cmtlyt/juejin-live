@@ -8,3 +8,20 @@
     display: block;
   }
 }
+
+@media screen and (max-width: 980px) {
+  .tabbarContent {
+    margin: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .tabbarContent {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+
+  .subList {
+    display: none;
+  }
+}

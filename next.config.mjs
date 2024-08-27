@@ -17,9 +17,8 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        hostname: 'p9-passport.byteacctimg.com',
-      },
+      { hostname: 'p9-passport.byteacctimg.com' },
+      { hostname: 'p1-juejin.byteimg.com' },
     ],
   },
   reactStrictMode: false,

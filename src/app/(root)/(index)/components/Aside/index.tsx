@@ -19,10 +19,23 @@ const sortedAsideList = (() => {
   return tempList;
 })();
 
-export function Aside() {
+interface IProps {
+  className?: string;
+}
+
+export function Aside(props: IProps) {
+  const { className } = props;
+
   return (
     <aside
-      className={gc([styles.asideWrapper], 'p-[1rem]', 'sticky top-[2rem]', 'h-max', 'bg-white')}
+      className={gc([
+        styles.asideWrapper,
+        className,
+        'p-[1rem]',
+        'sticky top-[2rem]',
+        'h-max',
+        'bg-white',
+      ])}
     >
       <LinkList
         links={sortedAsideList}

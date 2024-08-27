@@ -51,7 +51,7 @@ export function ArticleList(props: IProps) {
   }, [sort]);
 
   return (
-    <section>
+    <section className="px-[2rem] bg-white">
       {articles.map((article) => (
         <Article key={article.id} articleInfo={article} />
       ))}

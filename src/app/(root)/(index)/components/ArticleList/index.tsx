@@ -55,7 +55,9 @@ export function ArticleList(props: IProps) {
       {articles.map((article) => (
         <Article key={article.id} articleInfo={article} />
       ))}
-      {!!articles.length && <BottomingOut distance={100} onTrigger={loadArticleList} />}
+      {!!articles.length && !doneRef.current && (
+        <BottomingOut distance={100} onTrigger={loadArticleList} />
+      )}
     </section>
   );
 }

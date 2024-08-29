@@ -19,3 +19,14 @@
     padding: 0;
   }
 }
+
+.tabbarWrapper {
+  display: none;
+  box-shadow: 0 0.3rem 1rem -1rem;
+}
+
+@media screen and (max-width: 1220px) {
+  .tabbarWrapper {
+    display: block;
+  }
+}

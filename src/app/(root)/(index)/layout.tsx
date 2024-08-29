@@ -9,7 +9,7 @@ import { Aside } from './components/Aside';
 export default function IndexLayout({ children }: { children: React.ReactNode }) {
   return (
     <section className="bg-slate-50">
-      <Tabbar />
+      <Tabbar className={styles.tabbarWrapper} />
       <section className={gc([styles.contentWrapper, 'mx-auto mt-[2rem] flex w-[120rem]'])}>
         <Aside className="mr-[2rem]" />
         {children}

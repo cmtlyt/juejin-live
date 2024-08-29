@@ -1,14 +1,3 @@
-.tabbarWrapper {
-  display: none;
-  box-shadow: 0 0.3rem 1rem -1rem;
-}
-
-@media screen and (max-width: 1220px) {
-  .tabbarWrapper {
-    display: block;
-  }
-}
-
 @media screen and (max-width: 980px) {
   .tabbarContent {
     margin: 0 1rem;

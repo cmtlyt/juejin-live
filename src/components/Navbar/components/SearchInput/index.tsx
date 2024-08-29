@@ -5,7 +5,7 @@ import { SearchHistory } from './SearchHistory';
 
 export function SearchInput() {
   return (
-    <form className="group relative my-auto flex items-center h-[3.4rem]">
+    <form className="group relative my-auto flex items-center h-[3.4rem]" action="/search">
       <section
         className={gc([
           'flex items-center',

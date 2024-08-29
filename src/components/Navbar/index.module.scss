@@ -32,6 +32,12 @@
 // 1000px main right-aside hidden
 // 600px main not padding and width is 100vw
 
+@media screen and (max-width: 1400px) {
+  .tabbarWrapper {
+    margin: 0 2.4rem;
+  }
+}
+
 @media screen and (max-width: 1350px) {
   .otherTab {
     display: none;

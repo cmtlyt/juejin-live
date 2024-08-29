@@ -37,7 +37,7 @@ function mock(source: any[]): IArticle[] {
   return source.map((item) => {
     return {
       ...item,
-      path: `/article/${item.id}`,
+      path: `/post/${item.id}`,
       content: item.body,
       view: ~~(Math.random() * 100),
       thumbs: ~~(Math.random() * 100),

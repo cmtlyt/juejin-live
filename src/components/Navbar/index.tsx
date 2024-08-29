@@ -40,7 +40,7 @@ export function Navbar() {
         className={gc([
           styles.tabbarWrapper,
           'flex items-center justify-between',
-          'h-[6rem] w-full mx-[2.4rem]',
+          'h-[6rem] w-full mx-auto max-w-[140rem]',
         ])}
       >
         <div className="flex items-center h-full">

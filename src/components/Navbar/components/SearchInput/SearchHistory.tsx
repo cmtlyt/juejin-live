@@ -9,7 +9,12 @@ export function SearchHistory(props: IProps) {
 
   return (
     <section
-      className={gc(['hidden', 'absolute left-0 right-0 top-full', 'shadow-border', className])}
+      className={gc([
+        'hidden',
+        'absolute left-0 right-0 top-full',
+        'shadow-border bg-white',
+        className,
+      ])}
     >
       <div className="border-b border-[#dfdfdf] border-solid">title</div>
       <div>content</div>

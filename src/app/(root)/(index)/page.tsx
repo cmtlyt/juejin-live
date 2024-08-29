@@ -20,7 +20,7 @@ export default async function IndexPage({ params, searchParams }: PageProps) {
   const { sort = 'recommend' } = searchParams;
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 w-full">
       <section>
         <section className="flex h-[4.9rem] border-b-[.1rem] border-gray-200 border-solid bg-white">
           <LinkList

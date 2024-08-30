@@ -1,9 +1,23 @@
+'use client';
+
 import { gc } from '@cmtlyt/base';
 import { BiSearch } from 'react-icons/bi';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useCallback, useRef } from 'react';
 
 import { SearchHistory } from './SearchHistory';
 
-export function SearchInput() {
+function BaseSearchInput() {
+  const searchParams = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const query = searchParams.get('query') || '';
+
+  const blurHander = useCallback(() => {
+    inputRef.current?.focus();
+    inputRef.current?.blur();
+  }, []);
+
   return (
     <form className="group relative my-auto flex items-center h-[3.4rem]" action="/search">
       <section
@@ -16,11 +30,13 @@ export function SearchInput() {
         ])}
       >
         <input
+          ref={inputRef}
           type="text"
           autoComplete="off"
           placeholder="搜索稀土掘金"
           name="query"
           className="flex-1 pl-[1.2rem] size-full"
+          value={query}
         />
         <button
           className={gc([
@@ -35,7 +51,15 @@ export function SearchInput() {
           <BiSearch />
         </button>
       </section>
-      <SearchHistory className="group-focus-within:block" />
+      <SearchHistory className="group-focus-within:block" onClickLink={blurHander} />
     </form>
+  );
+}
+
+export function SearchInput() {
+  return (
+    <Suspense>
+      <BaseSearchInput />
+    </Suspense>
   );
 }

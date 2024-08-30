@@ -40,6 +40,7 @@ export function ArticlesRank() {
       <Link
         className="flex items-end h-[3.2rem] text-gray-400 text-[1.4rem] border-t-[.1rem] border-gray-200 border-solid"
         href="/hot/articles/1"
+        target="_blank"
       >
         <section className="flex justify-center items-center w-full">
           <span>查看更多</span>
